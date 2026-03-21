@@ -23,17 +23,19 @@ const html = `<!DOCTYPE html>
     position: fixed;
     inset: 0;
     display: flex;
-    flex-direction: column;
-    animation: scroll ${photos.length * 2.5}s linear infinite;
+    flex-direction: row;
+    width: max-content;
+    animation: scroll ${photos.length * 1.5}s linear infinite;
   }
 
   @keyframes scroll {
-    0%   { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
   }
 
   .slide {
-    flex: 0 0 100vh;
+    flex: 0 0 100vw;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -41,7 +43,7 @@ const html = `<!DOCTYPE html>
   }
 
   .slide img {
-    max-width: min(90vw, 600px);
+    max-width: min(90vw, 700px);
     max-height: 85vh;
     object-fit: contain;
     border-radius: 8px;
