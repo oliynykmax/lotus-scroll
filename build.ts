@@ -26,7 +26,6 @@ const html = `<!DOCTYPE html>
     display: flex;
     flex-direction: row;
     width: max-content;
-    animation: scroll ${photos.length * 1.5}s linear infinite;
   }
 
   @keyframes scroll {
@@ -40,14 +39,14 @@ const html = `<!DOCTYPE html>
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 3vw;
   }
 
   .slide img {
-    max-width: min(90vw, 700px);
-    max-height: 85vh;
+    width: 80vw;
+    height: 80vh;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.6);
   }
 
@@ -76,10 +75,17 @@ const html = `<!DOCTYPE html>
 <body>
   <div class="vignette"></div>
   <div class="title">vita-22</div>
-  <div class="scroll-container">
+  <div class="scroll-container" id="scroller">
 ${photos.map(p => `    <div class="slide"><img src="${p}" loading="lazy" alt=""></div>`).join("\n")}
 ${photos.map(p => `    <div class="slide"><img src="${p}" loading="lazy" alt=""></div>`).join("\n")}
   </div>
+  <script>
+    const speed = 120;
+    const scroller = document.getElementById('scroller');
+    const total = scroller.scrollWidth / 2;
+    const duration = total / speed;
+    scroller.style.animation = \`scroll \${duration}s linear infinite\`;
+  </script>
 </body>
 </html>`;
 
