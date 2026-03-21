@@ -79,12 +79,17 @@ const html = `<!DOCTYPE html>
 ${photos.map(p => `    <div class="slide"><img src="${p}" loading="lazy" alt=""></div>`).join("\n")}
 ${photos.map(p => `    <div class="slide"><img src="${p}" loading="lazy" alt=""></div>`).join("\n")}
   </div>
+  <audio id="bgm" src="audio/track.mp3" loop></audio>
+  <div id="play-btn" style="position:fixed;inset:0;z-index:30;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);color:#fff;font-size:2rem;font-family:sans-serif">tap to vibe</div>
   <script>
     const speed = 80;
     const scroller = document.getElementById('scroller');
     const total = scroller.scrollWidth / 2;
     const duration = total / speed;
     scroller.style.animation = \`scroll \${duration}s linear infinite\`;
+    const bgm = document.getElementById('bgm');
+    const btn = document.getElementById('play-btn');
+    btn.onclick = () => { bgm.play(); btn.remove(); };
   </script>
 </body>
 </html>`;
