@@ -24,7 +24,7 @@ const html = `<!DOCTYPE html>
     inset: 0;
     display: flex;
     flex-direction: column;
-    animation: scroll ${photos.length * 5}s linear infinite;
+    animation: scroll ${photos.length * 2.5}s linear infinite;
   }
 
   @keyframes scroll {
