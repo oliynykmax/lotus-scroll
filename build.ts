@@ -80,7 +80,7 @@ ${photos.map(p => `    <div class="slide"><img src="${p}" loading="lazy" alt="">
 ${photos.map(p => `    <div class="slide"><img src="${p}" loading="lazy" alt=""></div>`).join("\n")}
   </div>
   <script>
-    const speed = 120;
+    const speed = 80;
     const scroller = document.getElementById('scroller');
     const total = scroller.scrollWidth / 2;
     const duration = total / speed;
