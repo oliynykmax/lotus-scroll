@@ -1,6 +1,6 @@
 import { Glob } from "bun";
 
-const glob = new Glob("photos/*.{jpg,jpeg,png,webp,gif}");
+const glob = new Glob("memes/*.{jpg,jpeg,png,webp,gif}");
 const photos = [...glob.scanSync(import.meta.dir)].sort();
 
 const html = `<!DOCTYPE html>
@@ -8,7 +8,7 @@ const html = `<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>vita-22</title>
+<title>Lotus Scroll</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -74,7 +74,7 @@ const html = `<!DOCTYPE html>
 </head>
 <body>
   <div class="vignette"></div>
-  <div class="title">vita-22</div>
+  <div class="title">Lotus Scroll</div>
   <div class="scroll-container" id="scroller">
 ${photos.map(p => `    <div class="slide"><img src="${p}" loading="lazy" alt=""></div>`).join("\n")}
 ${photos.map(p => `    <div class="slide"><img src="${p}" loading="lazy" alt=""></div>`).join("\n")}
@@ -89,7 +89,20 @@ ${photos.map(p => `    <div class="slide"><img src="${p}" loading="lazy" alt="">
     scroller.style.animation = \`scroll \${duration}s linear infinite\`;
     const bgm = document.getElementById('bgm');
     const btn = document.getElementById('play-btn');
-    btn.onclick = () => { bgm.play(); btn.remove(); };
+
+    let isPlaying = false;
+    document.body.onclick = () => {
+      if (!isPlaying) {
+        bgm.play();
+        btn.style.display = 'none';
+        isPlaying = true;
+      } else {
+        bgm.pause();
+        btn.style.display = 'flex';
+        btn.innerText = 'tap to resume';
+        isPlaying = false;
+      }
+    };
   </script>
 </body>
 </html>`;

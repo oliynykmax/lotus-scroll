@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>vita-22</title>
+<title>Lotus Scroll</title>
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -69,30 +69,30 @@
 </head>
 <body>
   <div class="vignette"></div>
-  <div class="title">vita-22</div>
+  <div class="title">Lotus Scroll</div>
   <div class="scroll-container" id="scroller">
-    <div class="slide"><img src="photos/5330510364229179077.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179078.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179079.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179080.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179081.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179082.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179083.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179084.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179085.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179089.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/Pasted image.png" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179077.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179078.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179079.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179080.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179081.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179082.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179083.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179084.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179085.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/5330510364229179089.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="photos/Pasted image.png" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179077.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179078.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179079.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179080.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179081.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179082.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179083.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179084.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179085.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179089.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/Pasted image.png" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179077.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179078.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179079.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179080.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179081.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179082.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179083.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179084.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179085.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/5330510364229179089.jpg" loading="lazy" alt=""></div>
+    <div class="slide"><img src="memes/Pasted image.png" loading="lazy" alt=""></div>
   </div>
   <audio id="bgm" src="audio/track.mp3" loop></audio>
   <div id="play-btn" style="position:fixed;inset:0;z-index:30;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);color:#fff;font-size:2rem;font-family:sans-serif">tap to vibe</div>
@@ -104,7 +104,20 @@
     scroller.style.animation = `scroll ${duration}s linear infinite`;
     const bgm = document.getElementById('bgm');
     const btn = document.getElementById('play-btn');
-    btn.onclick = () => { bgm.play(); btn.remove(); };
+
+    let isPlaying = false;
+    document.body.onclick = () => {
+      if (!isPlaying) {
+        bgm.play();
+        btn.style.display = 'none';
+        isPlaying = true;
+      } else {
+        bgm.pause();
+        btn.style.display = 'flex';
+        btn.innerText = 'tap to resume';
+        isPlaying = false;
+      }
+    };
   </script>
 </body>
 </html>
