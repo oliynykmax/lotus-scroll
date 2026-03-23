@@ -2,11 +2,7 @@ import { Glob } from "bun";
 
 const glob = new Glob("memes/*.{jpg,jpeg,png,webp,gif}");
 const photos = [...glob.scanSync(import.meta.dir)];
-
-// Simple Shuffle (Bag)
-photos.sort(() => Math.random() - 0.5);
-
-const renderSlides = (list) => list.map(p => `    <div class="slide"><img src="${p}" loading="lazy" alt=""></div>`).join('\n');
+const photosJson = JSON.stringify(photos);
 
 const html = `<!DOCTYPE html>
 <html lang="en">
@@ -29,14 +25,27 @@ const html = `<!DOCTYPE html>
 <body>
   <div class="vignette"></div>
   <div class="title">Lotus Scroll</div>
-  <div class="scroll-container" id="scroller">
-${renderSlides(photos)}
-${renderSlides(photos)}
-  </div>
+  <div class="scroll-container" id="scroller"></div>
   <audio id="bgm" src="audio/track.mp3" loop></audio>
   <div id="play-btn" style="position:fixed;inset:0;z-index:30;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);color:#fff;font-size:2rem">tap to vibe</div>
   <script>
+    const photos = ${photosJson};
     const scroller = document.getElementById('scroller');
+    
+    // Shuffle photos (Bag)
+    photos.sort(() => Math.random() - 0.5);
+
+    // Create slides (doubled for seamless loop)
+    [...photos, ...photos].forEach(src => {
+      const slide = document.createElement('div');
+      slide.className = 'slide';
+      const img = document.createElement('img');
+      img.src = src;
+      img.loading = 'lazy';
+      slide.appendChild(img);
+      scroller.appendChild(slide);
+    });
+
     const duration = (scroller.scrollWidth / 2) / 80;
     scroller.style.animation = "scroll " + duration + "s linear infinite";
     
@@ -52,4 +61,4 @@ ${renderSlides(photos)}
 </html>`;
 
 await Bun.write("index.html", html);
-console.log("Done. Photos shuffled in a bag.");
+console.log("Done. Photos will now shuffle on every refresh.");

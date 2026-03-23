@@ -19,34 +19,27 @@
 <body>
   <div class="vignette"></div>
   <div class="title">Lotus Scroll</div>
-  <div class="scroll-container" id="scroller">
-    <div class="slide"><img src="memes/5330510364229179081.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179079.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/Pasted image.png" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179083.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179085.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179084.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179082.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179078.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179077.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179080.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179089.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179081.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179079.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/Pasted image.png" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179083.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179085.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179084.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179082.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179078.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179077.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179080.jpg" loading="lazy" alt=""></div>
-    <div class="slide"><img src="memes/5330510364229179089.jpg" loading="lazy" alt=""></div>
-  </div>
+  <div class="scroll-container" id="scroller"></div>
   <audio id="bgm" src="audio/track.mp3" loop></audio>
   <div id="play-btn" style="position:fixed;inset:0;z-index:30;cursor:pointer;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.5);color:#fff;font-size:2rem">tap to vibe</div>
   <script>
+    const photos = ["memes/5330510364229179077.jpg","memes/5330510364229179078.jpg","memes/5330510364229179079.jpg","memes/5330510364229179080.jpg","memes/5330510364229179081.jpg","memes/5330510364229179082.jpg","memes/5330510364229179083.jpg","memes/5330510364229179084.jpg","memes/5330510364229179085.jpg","memes/5330510364229179089.jpg","memes/Pasted image.png"];
     const scroller = document.getElementById('scroller');
+    
+    // Shuffle photos (Bag)
+    photos.sort(() => Math.random() - 0.5);
+
+    // Create slides (doubled for seamless loop)
+    [...photos, ...photos].forEach(src => {
+      const slide = document.createElement('div');
+      slide.className = 'slide';
+      const img = document.createElement('img');
+      img.src = src;
+      img.loading = 'lazy';
+      slide.appendChild(img);
+      scroller.appendChild(slide);
+    });
+
     const duration = (scroller.scrollWidth / 2) / 80;
     scroller.style.animation = "scroll " + duration + "s linear infinite";
     
